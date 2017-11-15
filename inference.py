@@ -92,16 +92,18 @@ def slipnet(input,istraining,reuse=False,s=''):
 
 def sameornot(input, istraining,reuse=False):
     with tf.name_scope("model"):
-        net0,net1=tf.split(input,num_or_size_splits=2,axis=1)
+        net0,net1,net2=tf.split(input,num_or_size_splits=2,axis=1)
         net0=slipnet(net0,istraining,reuse,'net0/')
         net1=slipnet(net1,istraining,reuse,'net1/')
-        # net2=slipnet(net2,istraining,reuse,'net2/')
+        net2=slipnet(net2,istraining,reuse,'net2/')
         # print tf.shape(net0)
-    net=tf.stack([net0,net1],axis=1)
+    net=tf.stack([net0,net1,net2],axis=1)
     # print tf.shape(net)
     shp = net.get_shape()
     flattened_shape = shp[1].value * shp[2].value
     net = tf.reshape(net, [-1, flattened_shape], name='resh_fi')
+
+
 
     return net
 

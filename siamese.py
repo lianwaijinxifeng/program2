@@ -16,8 +16,8 @@ LEARNING_RATE_BASE=0.01
 STEPS=100000
 margin=3
 
-datapath='./peddata2to1tr'
-testpath='./peddata2to1te'
+datapath='./peddatatr'
+testpath='./peddatate'
 os.environ["CUDA_VISIBLE_DEVICES"]="1"
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
