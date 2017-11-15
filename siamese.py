@@ -16,8 +16,8 @@ LEARNING_RATE_BASE=0.01
 STEPS=100000
 margin=3
 
-datapath='./peddatatr'
-testpath='./peddatate'
+datapath='./peddata2to1tr'
+testpath='./peddata2to1te'
 os.environ["CUDA_VISIBLE_DEVICES"]="1"
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
@@ -54,8 +54,8 @@ def fc_layer(input,name,n_out):
 #     return softmax,predictions
 
 def get_batch(path):
-    input1 = np.zeros([Batchsize, 192, 64, 3])
-    input2 = np.zeros([Batchsize, 192, 64, 3])
+    input1 = np.zeros([Batchsize, 128, 64, 3])
+    input2 = np.zeros([Batchsize, 128, 64, 3])
     labin = np.zeros([Batchsize, 1])
     seqdir = os.listdir(path)
     numseq = len(seqdir)
@@ -136,8 +136,8 @@ def get_batch(path):
 
 
 def main(self):
-    img_input1 = tf.placeholder(tf.float32, [Batchsize, 192,64, 3])
-    img_input2=tf.placeholder(tf.float32,[Batchsize,192,64,3])
+    img_input1 = tf.placeholder(tf.float32, [Batchsize, 128,64, 3])
+    img_input2=tf.placeholder(tf.float32,[Batchsize,128,64,3])
     ist=tf.placeholder(tf.bool)
     ground_truth_input = tf.placeholder(tf.int64, [Batchsize, 1], name='GroundTruthInput')
 
